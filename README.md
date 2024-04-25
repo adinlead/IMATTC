@@ -1,45 +1,41 @@
 # IMATTC
-A userscript overhaul for the [Ingress Mission Authoring Tool](https://mission-author-dot-betaspike.appspot.com/).
+[Ingress任务创作工具](https://mission-author-dot-betaspike.appspot.com/)脚本的全面升级。
 
-In order to use this, you'll need a browser with a userscript manager, such as [Tampermonkey](https://tampermonkey.net/), and an [Ingress](https://ingress.com/) user account eligible to create missions.
+想要使用它，您需要在浏览器中安装[Tampermonkey](https://tampermonkey.net/)插件。此外，您还需要一个拥有创建任务资格的[Ingress](https://ingress.com/)账户。
 
-[Download and Install](https://github.com/adinlead/IMATTC/raw/master/IMATTC.user.js)
+==>> [安装此脚本](https://github.com/adinlead/IMATTC/raw/master/IMATTC.user.js) <<==
 
-**IMATTC is not currently supported in Greasemonkey.** It is suggested you use this Tampermonkey for now. If you have experience working with scripts in Greasemonkey, [I would not be averse to some help fixing this](https://github.com/andyjennings314/IMATTC/issues/9).
+**IMATTC 目前尚不支持 Greasemonkey。** 建议您目前使用Tampermonkey。如果您有使用Greasemonkey编写脚本的经验，[我（原作者）非常乐意接受帮助来完善这一功能]((https://github.com/andyjennings314/IMATTC/issues/9))。
 
-## Getting Started
+## 入门指南
 
-When you first load the mission editor with IMATTC installed, you'll find all your missions, sorted alphabetically.
-
+安装IMATTC后，您首次加载任务编辑器时，会发现所有任务均按字母顺序排列。
 ![alt text](https://github.com/andyjennings314/IMATTC/raw/master/img/screen1.PNG "Screenshot 1")
 
-You can easily make use of the mission editor like this (just use the "Perform Mission Actions" button to pull them up), but you may want to use the categories to sort your missions into banners, or other groupings. First, hit the "Create New Category" button, and choose a name:
-
+您可以像这样轻松地使用任务编辑器（只需点击“编辑任务”按钮即可调用），但您可能还想使用分类功能将任务按照横幅或其他方式分组。首先，点击“新建分类”按钮，并选择一个名称：
 ![alt text](https://github.com/andyjennings314/IMATTC/raw/master/img/screen2.PNG "Screenshot 2")
 
-The script will create your new category, and automatically drop all your other missions into "Unsorted Missions". The next step is to add missions to your categories, and this has been made super easy in the latest version of this script - just click and drag the missions you want into the category! You can even click and drag them to reorder their default sorting within the category.
-
+脚本将创建新分类，并自动将您的其他任务放入“未分类”任务中。下一步是将任务添加到您的分类中，在脚本的最新版本中，这一操作变得非常简单——只需点击并拖动您想要的任务到相应的分类中！您甚至可以通过点击和拖动来重新排序它们在分类中的默认顺序。
 ![alt text](https://github.com/andyjennings314/IMATTC/raw/master/img/screen5.PNG "Screenshot 5")
 
-Lastly, there's even a button at the top of each category, to preview its contents as a banner:
-
+最后，每个分类的顶部都有一个按钮，用于预览其内容的横幅效果：
 ![alt text](https://github.com/andyjennings314/IMATTC/raw/master/img/screen6.PNG "Screenshot 6")
 
-## Features
-- Total overhaul of the main mission listing, featuring:
-  - Better use of screen space
-  - More distinct colouration and iconography for mission status
-  - Consistent mission sorting criteria, including user-defined criteria
-  - Ability to preview missions, both in mission editor and Ingress Intel map
-- User-created categories for missions, including image and route preview functionality, and drag-and-drop mission sorting and reordering.
-- Drag-and-drop waypoint reordering in Waypoint view
-- Minor UI enhancements to mission creation/editing
+## 功能特性
+- 对主要任务列表的全面改进，特点如下：
+  - 更有效地利用屏幕空间
+  - 更鲜明的色彩和图标表示任务状态
+  - 一致的任务排序标准，包括用户自定义标准
+  - 可在任务编辑器和Ingress Intel地图上预览任务
+  - 用户自定义任务分类，包括图像和路线预览功能，以及拖放式任务排序和重新排序。
+- 在路点视图中拖放式路点重新排序
+- 对任务创建/编辑界面的细微用户界面改进
 
 
-## Upcoming features
-- Export to [IngressMosaik](https://ingressmosaik.com) functionality
-- Additional mission sort criteria
-- Searching missions
+## 咕咕咕
+- 导出 [IngressMosaik](https://ingressmosaik.com) 功能
+- 附加任务的排序标准
+- 搜索任务
 
 ## Release History
 - 1.7.0: Enabled drag-and-drop moving of missions between categories
