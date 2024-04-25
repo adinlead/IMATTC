@@ -34,6 +34,7 @@ String.prototype.format = function () {
     }
     return s;
 };
+
 const deepAssign = function (...param) {
     let result = Object.assign({}, ...param);
     for (let item of param) {
@@ -72,11 +73,49 @@ const _DEFAULT_LOCAL_TXT = {
         "CREATION_ORDER": "Creation order",
         "MISSION_STATE": "Mission state",
     },
-    "CATEGORY_OPT":{
-        "PREVIEW_IMAGES":"Preview Images",
-        "PREVIEW_ROUTE":"Preview Route",
-        "DELETE_CATEGORY":"Delete Category",
-    }
+    "CATEGORY_OPT": {
+        "PREVIEW_IMAGES": "Preview Images",
+        "PREVIEW_ROUTE": "Preview Route",
+        "DELETE_CATEGORY": "Delete Category",
+    },
+    "CREATE_PAGE": {
+        // TOP NAV
+        "MISSION_TYPE": "Mission Type",
+        "MISSION_DETAILS": "Mission Details",
+        "WAYPOINTS": "Waypoints",
+        "PREVIEW": "Preview",
+        // Mission Type Page
+        "MC_TITLE": "Choose mission type:",
+        "MC_SEQUENTIAL": "&nbsp;&nbsp;SEQUENTIAL",
+        "MC_SEQUENTIAL_DESC": "Agents visit portals and field trip markers in a set order.<br/><br/>Best suited to missions in a banner series, or one-offs with a pre-determined route.",
+        "MC_HIDDEN_SEQUENTIAL": "&nbsp;&nbsp;HIDDEN SEQUENTIAL",
+        "MC_HIDDEN_SEQUENTIAL_DESC": "Agents visit portals and field trip markers in a set order, but the location of every waypoint beyond the first is hidden, meaning players rely on clues in the waypoint text.<br/><br/>Good for more puzzle-based missions, but please ensure you provide adequate clues for agents to find all the waypoints.",
+        "MC_ANY_ORDER": "&nbsp;&nbsp;ANY ORDER",
+        "MC_ANY_ORDER_DESC": "Agents visit portals and field trip markers in any order. Excellent for one-off missions where a specific route isn't required, but terrible for missions in banner serieses.<br /><br /><span class='stopthat'>It is strongly advised that if you are making missions for a banner, you set them as Sequential missions - your rating on IngressMosaik will thank you!",
+        "MC_FOOTER_NEXT": "Mission Details >>",
+        // Mission Info Page
+        "MI_TITLE": "Edit mission details:",
+        "MI_NAME": "Mission Name",
+        "MI_NAME_PLACEHOLDER": "Add mission name",
+        "MI_DESCRIPTION": "Mission Description",
+        "MI_DESCRIPTION_PLACEHOLDER": "Add mission description",
+        // Mission Info Page Icon Text
+        "MI_ICON_LABEL": "Choose mission icon (Suggested size: 512 x 512 pixels)",
+        "MI_ICON_UPLOAD_BTN": "Upload",
+        "MI_ICON_CLEAR_BTN": "Clear",
+        "MI_ICON_PREVIEW": "Perview",
+        "MI_ICON_LOGO": "Logo",
+        "MI_ICON_MEDAL": "Medal",
+        // Mission Info Page Footer Btn
+        "MI_FOOTER_BACK": "<< Back",
+        "MI_FOOTER_NEXT": "Choose Waypoints >>",
+        // Mission Waypoint Footer Btn
+        "MW_FOOTER_MISSIONS": "Live Missions",
+        "MW_FOOTER_BACK": "<< Back",
+        "MW_FOOTER_NEXT": "Preview Mission >>",
+        // Mission Perview Page
+        "MF_DEFAULT_OPTIONAL": "OPTIONAL: Select a category to add this mission to",
+    },
 };
 const _LOCAL_TXT_DICT = {
     "zh-CN": {
@@ -105,11 +144,49 @@ const _LOCAL_TXT_DICT = {
             "CREATION_ORDER": "创建顺序",
             "MISSION_STATE": "任务状态",
         },
-        "CATEGORY_OPT":{
-            "PREVIEW_IMAGES":"组图预览",
-            "PREVIEW_ROUTE":"路径预览",
-            "DELETE_CATEGORY":"删除分组",
-        }
+        "CATEGORY_OPT": {
+            "PREVIEW_IMAGES": "组图预览",
+            "PREVIEW_ROUTE": "路径预览",
+            "DELETE_CATEGORY": "删除分组",
+        },
+        "CREATE_PAGE": {
+            // 顶部导航栏
+            "MISSION_TYPE": "任务类型",
+            "MISSION_DETAILS": "任务详情",
+            "WAYPOINTS": "导航点",
+            "PREVIEW": "预览",
+            // 任务类型页
+            "MC_TITLE": "选择任务类型：",
+            "MC_SEQUENTIAL": "&nbsp;&nbsp;顺序访问",
+            "MC_SEQUENTIAL_DESC": "特工按照设定的顺序访问门户和实地考察标记。<br/><br/>最适用于横幅系列中的任务，或具有预定路线的单次任务。",
+            "MC_HIDDEN_SEQUENTIAL": "&nbsp;&nbsp;隐藏入口",
+            "MC_HIDDEN_SEQUENTIAL_DESC": "特工按照设定的顺序访问门户和实地考察标记，但除第一个路点外，所有路点的位置都是隐藏的，这意味着玩家需要依赖路点文本中的线索来寻找。<br/><br/>这种模式非常适合于更多基于谜题的任务，但请确保您为特工提供足够的线索，以便找到所有路点。",
+            "MC_ANY_ORDER": "&nbsp;&nbsp;任意顺序",
+            "MC_ANY_ORDER_DESC": "特工以任意顺序访问门户和实地考察标记。非常适合那些不需要特定路线的一次性任务，但不适合横幅系列任务。<br /><br /><span class='stopthat'>强烈建议，如果您正在为横幅制作任务，请将它们设置为顺序任务,您在IngressMosaik上的评分将对您表示感激！",
+            "MC_FOOTER_NEXT": "任务信息 >>",
+            // 任务信息页面表单
+            "MI_TITLE": "编辑任务信息：",
+            "MI_NAME": "任务名",
+            "MI_NAME_PLACEHOLDER": "添加任务名",
+            "MI_DESCRIPTION": "任务信息",
+            "MI_DESCRIPTION_PLACEHOLDER": "添加任务信息",
+            // 任务信息页面图标
+            "MI_ICON_LABEL": "选择任务图标 (建议尺寸：512*512 px)",
+            "MI_ICON_UPLOAD_BTN": "上传",
+            "MI_ICON_CLEAR_BTN": "清除",
+            "MI_ICON_PREVIEW": "预览",
+            "MI_ICON_LOGO": "图标",
+            "MI_ICON_MEDAL": "徽章",
+            // 任务信息页面页脚按钮
+            "MI_FOOTER_BACK": "<< 返回",
+            "MI_FOOTER_NEXT": "选择导航点 >>",
+            // 任务导航页面页脚按钮
+            "MW_FOOTER_MISSIONS": "附近任务",
+            "MW_FOOTER_BACK": "<< 返回",
+            "MW_FOOTER_NEXT": "任务预览 >>",
+            // 任务预览页面
+            "MF_DEFAULT_OPTIONAL": "【可选】将此任务添加到分类：",
+        },
     }
 }
 const LOCAL_TXT = deepAssign(_DEFAULT_LOCAL_TXT, _LOCAL_TXT_DICT[window.navigator.language])
@@ -127,107 +204,99 @@ $(function () {
     TimeConversionConstants.DAY_GRANULARITY_HOURS = 12;
 
     //Build CSS rules
-    var newCssRules = "<style>"
-        + ".navbar-my-missions							{cursor: pointer;}"
-        + ".list > .bordered-panel {padding: 15px;}"
-        + ".list .missions-list,.missions-list .panel-body .row 				{display: flex;flex-wrap: wrap;}"
-        + ".list .create-mission-button    {margin: 0 5px;float: none!important;display: inline-block;}"
-        + ".missions-list, .name-view .bordered-panel, .type-view .bordered-panel {opacity: 0; transition: opacity 0.5s}"
-        + ".missions-list.ready, .name-view .bordered-panel.ready, .type-view .bordered-panel.ready {opacity:1}"
-        + ".missions-list .mission 					{border-width: 2px;  margin: 10px 0 0; position: relative; padding: 5px; display: block;}"
-        + ".list .mission .action-button 				{width: 100%; min-width: initial; max-width: initial;}"
-        + ".mission-header-container					{display: flex; align-items: stretch;}"
-        + ".mission-header-container div:nth-of-type(1){padding-right: 5px; width: 60px}"
-        + ".mission-header-container div:nth-of-type(2){width: calc(100% - 115px)}"
-        + ".mission-header-container div:nth-of-type(3){padding-left: 5px; width: 45px}"
-        + ".button, button 							{background-image: none;}"
-        + ".mission .name.glyphicon 					{font-size: 40px;}"
-        + ".mission .name:not(.glyphicon) 				{text-align: center; display: block;}"
-        + ".mission table {margin: 5px 0 10px;}"
-        + ".missions-list .panel-default { border-color: #5afbea; background-color: black; border-radius: 0;}"
-        + ".missions-list .panel-default>.panel-heading {color: #5afbea; background: #1f4549; border-radius: 0;}"
-        + ".missions-list .panel-default>.panel-heading a:hover {color: #5afbea;}"
-        + ".missions-list .panel-default>.panel-heading+.panel-collapse>.panel-body {border-top-color: black; padding-top: 0;}"
-        + ".missions-list .panel-heading a:after {  font-family: 'Glyphicons Halflings';  content: '\\e114';  float: right;  color: 5afbea;  position: relative;  left: 10px; }"
-        + ".missions-list .panel-heading h4.collapsed a:after {content: '\\e080'; }"
-        + ".ui-state-highlight { border: 2px solid #5afbea; background: #1f4549; margin-top: 10px;display: block;padding: 0 15px; min-height: 100px;}"
-        + ".modal {color: black;}"
-        + ".banner-preview .modal-body {background-color: #222;}"
-        + ".banner-preview .row {display: flex; flex-direction: row-reverse; flex-wrap:wrap-reverse!important}"
-        + ".banner-preview img {border-radius: 50%;border: 3px solid goldenrod;}"
-        + ".banner-preview .col-xs-2 {padding-bottom: 15px;}";
-
-    newCssRules += ".mission-list-item-published 				{background-image: none; background: #001a00; border-color: darkgreen;color: lightgreen;}"
-        + ".list .mission .mission-title-published 	{color: lightgreen;}"
-        + ".mission-list-item-published .table-bordered * {border-color: lightgreen;}"
-        + ".mission-list-item-published .button		{color: lightgreen; border-color: lightgreen; background-color: #004d00;}"
-        + ".mission-list-item-published .button:hover	{background-color: #003300;}"
-        + ".mission-list-item-published .button .caret	{border-bottom-color: lightgreen;}";
-
-    newCssRules += ".mission-list-item-draft 					{background-image: none; background-color: #170703; border-color: #a42e12;color: #f7ba5f;}"
-        + ".list .mission .mission-title-draft 	{color: #f7ba5f;}"
-        + ".mission-list-item-draft .table-bordered * {border-color: #f7ba5f;}"
-        + ".mission-list-item-draft .button		{color: #f7ba5f; border-color: #f7ba5f; background-color: #8a280f;}"
-        + ".mission-list-item-draft .button:hover	{background-color: #73210d;}"
-        + ".mission-list-item-draft .button .caret	{border-bottom-color: #f7ba5f;}";
-
-    newCssRules += ".mission-list-item-draft_of_published_mission {background-image: none; background-color: #1a1a00; border-color: olive;color: greenyellow;}"
-        + ".list .mission .mission-title-draft_of_published_mission 	{color: greenyellow;}"
-        + ".mission-list-item-draft_of_published_mission .table-bordered * {border-color: greenyellow;}"
-        + ".mission-list-item-draft_of_published_mission .button		{color: greenyellow; border-color: greenyellow; background-color: #666600;}"
-        + ".mission-list-item-draft_of_published_mission .button:hover	{background-color: #4d4d00;}"
-        + ".mission-list-item-draft_of_published_mission .button .caret	{border-bottom-color: greenyellow;}";
-
-    newCssRules += ".mission-list-item-submitted				{background-image: none; background-color: #181201; border-color: darkgoldenrod;color: gold;}"
-        + ".list .mission .mission-title-submitted 	{color: gold;}"
-        + ".mission-list-item-submitted .table-bordered * {border-color: gold;}"
-        + ".mission-list-item-submitted .button		{color: gold; border-color: gold; background-color: #916a08;}"
-        + ".mission-list-item-submitted .button:hover	{background-color: #785807;}"
-        + ".mission-list-item-submitted .button .caret	{border-bottom-color: gold;}";
-
-    newCssRules += ".mission-list-item-disabled 				{background-image: none; background-color: #0d0d0d; border-color: #6b6b6b; color: red;}"
-        + ".list .mission .mission-title-disabled	 	{color: red;}"
-        + ".mission-list-item-disabled .table-bordered * {border-color: red;}"
-        + ".mission-list-item-disabled .button		{color: red; border-color: red; background-color: #595959;}"
-        + ".mission-list-item-disabled .button:hover	{background-color: #4d4d4d;}"
-        + ".mission-list-item-disabled .button .caret	{border-bottom-color: red;}";
-
-    newCssRules += ".mission-list-item-submitted_and_published	{background-image: none; background-color: #0f1405; border-color: olivedrab;color: springgreen;}"
-        + ".list .mission .mission-title-submitted_and_published 	{color: springgreen;}"
-        + ".mission-list-item-submitted_and_published .table-bordered * {border-color: springgreen;}"
-        + ".mission-list-item-submitted_and_published .button		{color: springgreen; border-color: springgreen; background-color: #5c7a1f;}"
-        + ".mission-list-item-submitted_and_published .button:hover	{background-color: #4d6619;}"
-        + ".mission-list-item-submitted_and_published .button .caret	{border-bottom-color: springgreen;}";
-
-    newCssRules += ".dropup 									{position: relative;}"
-        + ".dropup .dropdown-menu						{top: initial; bottom: 30px; left: 0; right: 0; text-align: center;}"
-        + ".dropdown-menu > li > a 					{cursor: pointer;}"
-        + ".editor .view 								{width: initial;height: initial;text-align: center;margin: 0;}"
-        + ".editor .type-view, .editor .name-view  {width: 100%;}"
-        + ".pagination>li>a 							{background: #0b0c0d;border-color: #5afbea;color: #5afbea; font-size: 18px;}"
-        + ".pagination>li>a:hover 						{background: #2b2c2d;border-color: #5afbea;color: #5afbea;}"
-        + ".pagination>li>a[disabled] 							{color: #ACAFAF;}"
-        + ".pagination>li>a[disabled]:hover 						{cursor: default; background: #0b0c0d;border-color: #5afbea;color: #ACAFAF;}"
-        + ".pagination>.active>a, .pagination>.active>a:hover {background-color: #5afbea;border-color: #5afbea;color: #0b0c0d;}"
-        + ".type-view .btn.focus, .type-view .btn:focus, .type-view .btn:hover {color: unset;}"
-        + ".type-view .btn.active.focus, .type-view .btn.active:focus, .type-view .btn.active:hover {color: #ebbc4a;}"
-        + ".type-view .bordered-panel p           {font-size: 20px;}"
-        + ".stopthat 									{color: red; font-weight: bold;}"
-        + "input.form-control, textarea.form-control {border: 1px solid #5afbea; background: none; border-radius: 0; color: white;}"
-        + ".upload-logo .input-row .upload-label {display: block;padding: 0 0 10px;}"
-        + ".upload-logo .input-row {display: block;}"
-        + ".upload-logo .input-row .upload-logo-cell, .upload-logo .input-row .clear-logo-button {display: inline-block;padding: 0; max-width: 50%;}"
-        + ".editor .waypoints-view .waypoints .waypoint.unselected {background-color: #000;}"
-        + ".editor .waypoints-view .waypoints .waypoint .number {cursor: move;}"
-        + ".preview-mission .body-panel .panel-container .map {height: unset;}"
-        + ".preview-mission .body-panel .panel-container .category-dropdown {margin-top: 20px;}"
-        + ".preview-mission .mission-header {margin: 0; width: 65%; float: left;)}"
-        + ".preview-mission .mission-stats, .preview-mission .mission-description {max-width: 35%;float: right; display: inline-block;}"
-        + "#previewMissionModel .loading-screen { top: 0; right: 0; position: relative; height: 40px;}"
-        + "#previewMissionModel .loading.spin { position: fixed; left: 50%; top: 80px; }"
-        + "</style>";
-    $("head").append(newCssRules);
-
+    //添加额外的CSS样式
+    $("head").append(`<style>
+.navbar-my-missions                                                                         {cursor: pointer;}
+.list > .bordered-panel                                                                     {padding: 15px;}
+.list .missions-list,.missions-list .panel-body .row                                        {display: flex;flex-wrap: wrap;}
+.list .create-mission-button                                                                {margin: 0 5px;float: none!important;display: inline-block;}
+.missions-list, .name-view .bordered-panel, .type-view .bordered-panel                      {opacity: 0; transition: opacity 0.5s}
+.missions-list.ready, .name-view .bordered-panel.ready, .type-view .bordered-panel.ready    {opacity:1}
+.missions-list .mission                                                                     {border-width: 2px;  margin: 10px 0 0; position: relative; padding: 5px; display: block;}
+.list .mission .action-button                                                               {width: 100%; min-width: initial; max-width: initial;}
+.mission-header-container                                                                   {display: flex; align-items: stretch;}
+.mission-header-container div:nth-of-type(1)                                                {padding-right: 5px; width: 60px}
+.mission-header-container div:nth-of-type(2)                                                {width: calc(100% - 115px)}
+.mission-header-container div:nth-of-type(3)                                                {padding-left: 5px; width: 45px}
+.button, button                                                                             {background-image: none;}
+.mission .name.glyphicon                                                                    {font-size: 40px;}
+.mission .name:not(.glyphicon)                                                              {text-align: center; display: block;}
+.mission table                                                                              {margin: 5px 0 10px;}
+.missions-list .panel-default                                                               { border-color: #5afbea; background-color: black; border-radius: 0;}
+.missions-list .panel-default>.panel-heading                                                {color: #5afbea; background: #1f4549; border-radius: 0;}
+.missions-list .panel-default>.panel-heading a:hover                                        {color: #5afbea;}
+.missions-list .panel-default>.panel-heading+.panel-collapse>.panel-body                    {border-top-color: black; padding-top: 0;}
+.missions-list .panel-heading a:after                                                       {  font-family: 'Glyphicons Halflings';  content: '\\e114';  float: right;  color: 5afbea;  position: relative;  left: 10px; }
+.missions-list .panel-heading h4.collapsed a:after                                          {content: '\\e080'; }
+.ui-state-highlight                                                                         { border: 2px solid #5afbea; background: #1f4549; margin-top: 10px;display: block;padding: 0 15px; min-height: 100px;}
+.modal                                                                                      {color: black;}
+.banner-preview .modal-body                                                                 {background-color: #222;}
+.banner-preview .row                                                                        {display: flex; flex-direction: row-reverse; flex-wrap:wrap-reverse!important}
+.banner-preview img                                                                         {border-radius: 50%;border: 3px solid goldenrod;}
+.banner-preview .col-xs-2                                                                   {padding-bottom: 15px;}
+.mission-list-item-published                                                                {background-image: none; background: #001a00; border-color: darkgreen;color: lightgreen;}
+.list .mission .mission-title-published                                                     {color: lightgreen;}
+.mission-list-item-published .table-bordered *                                              {border-color: lightgreen;}
+.mission-list-item-published .button                                                        {color: lightgreen; border-color: lightgreen; background-color: #004d00;}
+.mission-list-item-published .button:hover                                                  {background-color: #003300;}
+.mission-list-item-published .button .caret                                                 {border-bottom-color: lightgreen;}
+.mission-list-item-draft                                                                    {background-image: none; background-color: #170703; border-color: #a42e12;color: #f7ba5f;}
+.list .mission .mission-title-draft                                                         {color: #f7ba5f;}
+.mission-list-item-draft .table-bordered *                                                  {border-color: #f7ba5f;}
+.mission-list-item-draft .button                                                            {color: #f7ba5f; border-color: #f7ba5f; background-color: #8a280f;}
+.mission-list-item-draft .button:hover                                                      {background-color: #73210d;}
+.mission-list-item-draft .button .caret                                                     {border-bottom-color: #f7ba5f;}
+.mission-list-item-draft_of_published_mission                                               {background-image: none; background-color: #1a1a00; border-color: olive;color: greenyellow;}
+.list .mission .mission-title-draft_of_published_mission                                    {color: greenyellow;}
+.mission-list-item-draft_of_published_mission .table-bordered *                             {border-color: greenyellow;}
+.mission-list-item-draft_of_published_mission .button                                       {color: greenyellow; border-color: greenyellow; background-color: #666600;}
+.mission-list-item-draft_of_published_mission .button:hover                                 {background-color: #4d4d00;}
+.mission-list-item-draft_of_published_mission .button .caret                                {border-bottom-color: greenyellow;}
+.mission-list-item-submitted                                                                {background-image: none; background-color: #181201; border-color: darkgoldenrod;color: gold;}
+.list .mission .mission-title-submitted                                                     {color: gold;}
+.mission-list-item-submitted .table-bordered *                                              {border-color: gold;}
+.mission-list-item-submitted .button                                                        {color: gold; border-color: gold; background-color: #916a08;}
+.mission-list-item-submitted .button:hover                                                  {background-color: #785807;}
+.mission-list-item-submitted .button .caret                                                 {border-bottom-color: gold;}
+.mission-list-item-disabled                                                                 {background-image: none; background-color: #0d0d0d; border-color: #6b6b6b; color: red;}
+.list .mission .mission-title-disabled                                                      {color: red;}
+.mission-list-item-disabled .table-bordered *                                               {border-color: red;}
+.mission-list-item-disabled .button                                                         {color: red; border-color: red; background-color: #595959;}
+.mission-list-item-disabled .button:hover                                                   {background-color: #4d4d4d;}
+.mission-list-item-disabled .button .caret                                                  {border-bottom-color: red;}
+.mission-list-item-submitted_and_published                                                  {background-image: none; background-color: #0f1405; border-color: olivedrab;color: springgreen;}
+.list .mission .mission-title-submitted_and_published                                       {color: springgreen;}
+.mission-list-item-submitted_and_published .table-bordered *                                {border-color: springgreen;}
+.mission-list-item-submitted_and_published .button                                          {color: springgreen; border-color: springgreen; background-color: #5c7a1f;}
+.mission-list-item-submitted_and_published .button:hover                                    {background-color: #4d6619;}
+.mission-list-item-submitted_and_published .button .caret                                   {border-bottom-color: springgreen;}
+.dropup                                                                                     {position: relative;}
+.dropup .dropdown-menu                                                                      {top: initial; bottom: 30px; left: 0; right: 0; text-align: center;}
+.dropdown-menu > li > a                                                                     {cursor: pointer;}
+.editor .view                                                                               {width: initial;height: initial;text-align: center;margin: 0;}
+.editor .type-view, .editor .name-view                                                      {width: 100%;}
+.pagination>li>a                                                                            {background: #0b0c0d;border-color: #5afbea;color: #5afbea; font-size: 18px;}
+.pagination>li>a:hover                                                                      {background: #2b2c2d;border-color: #5afbea;color: #5afbea;}
+.pagination>li>a[disabled]                                                                  {color: #ACAFAF;}
+.pagination>li>a[disabled]:hover                                                            {cursor: default; background: #0b0c0d;border-color: #5afbea;color: #ACAFAF;}
+.pagination>.active>a, .pagination>.active>a:hover                                          {background-color: #5afbea;border-color: #5afbea;color: #0b0c0d;}
+.type-view .btn.focus, .type-view .btn:focus, .type-view .btn:hover                         {color: unset;}
+.type-view .btn.active.focus, .type-view .btn.active:focus, .type-view .btn.active:hover    {color: #ebbc4a;}
+.type-view .bordered-panel p                                                                {font-size: 20px;}
+.stopthat                                                                                   {color: red; font-weight: bold;}
+input.form-control, textarea.form-control                                                   {border: 1px solid #5afbea; background: none; border-radius: 0; color: white;}
+.upload-logo .input-row .upload-label                                                       {display: block;padding: 0 0 10px;}
+.upload-logo .input-row                                                                     {display: block;}
+.upload-logo .input-row .upload-logo-cell, .upload-logo .input-row .clear-logo-button       {display: inline-block;padding: 0; max-width: 50%;}
+.editor .waypoints-view .waypoints .waypoint.unselected                                     {background-color: #000;}
+.editor .waypoints-view .waypoints .waypoint .number                                        {cursor: move;}
+.preview-mission .body-panel .panel-container .map                                          {height: unset;}
+.preview-mission .body-panel .panel-container .category-dropdown                            {margin-top: 20px;}
+.preview-mission .mission-header                                                            {margin: 0; width: 65%; float: left;)}
+.preview-mission .mission-stats, .preview-mission .mission-description                      {max-width: 35%;float: right; display: inline-block;}
+#previewMissionModel .loading-screen                                                        { top: 0; right: 0; position: relative; height: 40px;}
+#previewMissionModel .loading.spin                                                          { position: fixed; left: 50%; top: 80px; }
+</style>`);
 });
 
 function init() {
@@ -318,8 +387,16 @@ function init() {
         //$('body').css('margin-top','0');
     };
 
+    /**
+     * 任务编辑页面设置
+     * @param editScope
+     */
     function missionEditSetup(editScope) {
         var editStep = editScope.mission.ui.view;
+        console.log("=========================")
+        console.log(editScope);
+        console.log("=========================")
+        console.log(editStep);
 
         //overwrite submitMission function to inject categorisation
         editScope.submitMission = function () {
@@ -365,16 +442,20 @@ function init() {
 
         //Replace breadcrumb with something a bit clearer
         $(".view").empty();
-        var newBreadcrumb = "<ul class='pagination'>"
-            + "<li" + (editScope.IsViewActive(editScope.EditorScreenViews.TYPE) ? " class='active'" : "")
-            + "><a role='button' ng-disabled='isBreadcrumbDisabled(EditorScreenViews.TYPE)' ng-click='bulletSetView(EditorScreenViews.TYPE)'>Mission Type</a></li>"
-            + "<li" + (editScope.IsViewActive(editScope.EditorScreenViews.NAME) ? " class='active'" : "")
-            + "><a role='button' ng-disabled='isBreadcrumbDisabled(EditorScreenViews.NAME)' ng-click='bulletSetView(EditorScreenViews.NAME)'>Mission Details</a></li>"
-            + "<li" + (editScope.IsViewActive(editScope.EditorScreenViews.WAYPOINTS) ? " class='active'" : "")
-            + "><a role='button' ng-disabled='isBreadcrumbDisabled(EditorScreenViews.WAYPOINTS)' ng-click='bulletSetView(EditorScreenViews.WAYPOINTS)'>Waypoints</a></li>"
-            + "<li" + (editScope.IsViewActive(editScope.EditorScreenViews.PREVIEW) ? " class='active'" : "")
-            + "><a role='button' ng-disabled='isBreadcrumbDisabled(EditorScreenViews.PREVIEW)' ng-click='bulletSetView(EditorScreenViews.PREVIEW)'>Preview</a></li>"
-            + "</ul>";
+        var newBreadcrumb = `<ul class='pagination'>
+            <li ${(editScope.IsViewActive(editScope.EditorScreenViews.TYPE) ? " class='active'" : "")}>
+                <a role='button' ng-disabled='isBreadcrumbDisabled(EditorScreenViews.TYPE)' ng-click='bulletSetView(EditorScreenViews.TYPE)'>
+                ${LOCAL_TXT.CREATE_PAGE.MISSION_TYPE}</a></li>
+            <li ${(editScope.IsViewActive(editScope.EditorScreenViews.NAME) ? " class='active'" : "")}>
+                <a role='button' ng-disabled='isBreadcrumbDisabled(EditorScreenViews.NAME)' ng-click='bulletSetView(EditorScreenViews.NAME)'>
+                ${LOCAL_TXT.CREATE_PAGE.MISSION_DETAILS}</a></li>
+            <li ${(editScope.IsViewActive(editScope.EditorScreenViews.WAYPOINTS) ? " class='active'" : "")}>
+                <a role='button' ng-disabled='isBreadcrumbDisabled(EditorScreenViews.WAYPOINTS)' ng-click='bulletSetView(EditorScreenViews.WAYPOINTS)'>
+                ${LOCAL_TXT.CREATE_PAGE.WAYPOINTS}</a></li>
+            <li ${(editScope.IsViewActive(editScope.EditorScreenViews.PREVIEW) ? " class='active'" : "")}>
+                <a role='button' ng-disabled='isBreadcrumbDisabled(EditorScreenViews.PREVIEW)' ng-click='bulletSetView(EditorScreenViews.PREVIEW)'>
+                ${LOCAL_TXT.CREATE_PAGE.PREVIEW}</a></li>
+            </ul>`;
         var compiledBread = $compile(newBreadcrumb)(editScope);
         $(".view").append(compiledBread);
 
@@ -385,14 +466,22 @@ function init() {
                 editTarget = $(".type-view .bordered-panel");
                 //Overhauled UI on Mission Type page, including more editorialising on non-linear missions in banners
                 $(".type-view .bordered-panel").empty().addClass('ready');
-                editCode = "<div class='btn-group btn-group-justified'>"
-                    + "<div class='btn-group'><button class='btn btn-lg' ng-click='mission.definition._sequential = true; mission.definition._hidden = false' ng-class='{active: mission.definition._sequential && !mission.definition._hidden}'><i class='glyphicon glyphicon-arrow-right'></i>&nbsp;&nbsp;SEQUENTIAL</button></div>"
-                    + "<div class='btn-group'><button class='btn btn-lg' ng-click='mission.definition._sequential = true; mission.definition._hidden = true' ng-class='{active: mission.definition._sequential && mission.definition._hidden}'><i class='glyphicon glyphicon-eye-close'></i>&nbsp;&nbsp;HIDDEN SEQUENTIAL</button></div>"
-                    + "<div class='btn-group'><button class='btn btn-lg' ng-click='mission.definition._sequential = false; mission.definition._hidden = false' ng-class='{active: !mission.definition._sequential}'><i class='glyphicon glyphicon-random'></i>&nbsp;&nbsp;ANY ORDER</button></div>"
-                    + "</div><br />"
-                    + "<p ng-show='mission.definition._sequential && !mission.definition._hidden'>Agents visit portals and field trip markers in a set order.<br/><br/>Best suited to missions in a banner series, or one-offs with a pre-determined route.</p>"
-                    + "<p ng-show='mission.definition._sequential && mission.definition._hidden'>Agents visit portals and field trip markers in a set order, but the location of every waypoint beyond the first is hidden, meaning players rely on clues in the waypoint text.<br/><br/>Good for more puzzle-based missions, but please ensure you provide adequate clues for agents to find all the waypoints.</p>"
-                    + "<p ng-show='!mission.definition._sequential'>Agents visit portals and field trip markers in any order. Excellent for one-off missions where a specific route isn't required, but terrible for missions in banner serieses.<br /><br /><span class='stopthat'>It is strongly advised that if you are making missions for a banner, you set them as Sequential missions - your rating on IngressMosaik will thank you! </span></p>";
+                editCode = `
+                    <div class='btn-group btn-group-justified'>
+                        <div class='btn-group'>
+                            <button class='btn btn-lg' ng-click='mission.definition._sequential = true; mission.definition._hidden = false' ng-class='{active: mission.definition._sequential && !mission.definition._hidden}'>
+                                <i class='glyphicon glyphicon-arrow-right'/>${LOCAL_TXT.CREATE_PAGE.MC_SEQUENTIAL}</button></div>
+                    <div class='btn-group'>
+                        <button class='btn btn-lg' ng-click='mission.definition._sequential = true; mission.definition._hidden = true' ng-class='{active: mission.definition._sequential && mission.definition._hidden}'>
+                            <i class='glyphicon glyphicon-eye-close'/>${LOCAL_TXT.CREATE_PAGE.MC_HIDDEN_SEQUENTIAL}</button></div>
+                    <div class='btn-group'>
+                        <button class='btn btn-lg' ng-click='mission.definition._sequential = false; mission.definition._hidden = false' ng-class='{active: !mission.definition._sequential}'>
+                            <i class='glyphicon glyphicon-random'/>${LOCAL_TXT.CREATE_PAGE.MC_ANY_ORDER}</button></div>
+                    </div>
+                    <br />
+                    <p ng-show='mission.definition._sequential && !mission.definition._hidden'>${LOCAL_TXT.CREATE_PAGE.MC_SEQUENTIAL_DESC}</p>
+                    <p ng-show='mission.definition._sequential && mission.definition._hidden'>${LOCAL_TXT.CREATE_PAGE.MC_HIDDEN_SEQUENTIAL_DESC}</p>
+                    <p ng-show='!mission.definition._sequential'>${LOCAL_TXT.CREATE_PAGE.MC_ANY_ORDER_DESC}</span></p>`;
                 break;
             case editScope.EditorScreenViews.NAME:
                 editTarget = $(".name-view .bordered-panel");
@@ -402,20 +491,25 @@ function init() {
                     <div class='row'>
                         <div class='col-sm-8 form-horizontal'>
                             <div class='form-group'>
-                                <label for='missionName' class='col-sm-2 control-label'>Mission Name</label>
+                                <label for='missionName' class='col-sm-2 control-label'>${LOCAL_TXT.CREATE_PAGE.MI_NAME}</label>
                                 <div class='col-sm-10'>
-                                    <input type='text' id='missionName' ng-model='mission.definition.name' class='form-control' placeholder='Add mission name' ng-class="{'invalid': !mission.definition.name}" maxlength='${editScope.MissionRules.MAX_MISSION_NAME_LENGTH}'>
+                                    <input type='text' id='missionName' ng-model='mission.definition.name' class='form-control' 
+                                        placeholder='${LOCAL_TXT.CREATE_PAGE.MI_NAME_PLACEHOLDER}' ng-class="{'invalid': !mission.definition.name}" 
+                                        maxlength='${editScope.MissionRules.MAX_MISSION_NAME_LENGTH}'>
                                 </div>
                             </div>
                             <div class='form-group'>
-                                <label for='missionDesc' class='col-sm-2 control-label'>Mission Description</label>
+                                <label for='missionDesc' class='col-sm-2 control-label'>${LOCAL_TXT.CREATE_PAGE.MI_DESCRIPTION}</label>
                                 <div class='col-sm-10'>
-                                    <textarea id='missionDesc' class='form-control' rows='4' ng-model='mission.definition.description' placeholder='Add mission description' ng-class="{'invalid': !mission.definition.description}" maxlength='${editScope.MissionRules.MAX_MISSION_DESCRIPTION_LENGTH}'></textarea>
+                                    <textarea id='missionDesc' class='form-control' rows='4' ng-model='mission.definition.description' 
+                                        placeholder='${LOCAL_TXT.CREATE_PAGE.MI_DESCRIPTION_PLACEHOLDER}' ng-class="{'invalid': !mission.definition.description}" 
+                                        maxlength='${editScope.MissionRules.MAX_MISSION_DESCRIPTION_LENGTH}'></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class='col-sm-4'>
-                            <div mission-logo-upload max-size='{{LogoParams.MAX_SIZE_BYTES}}' success='logoUploadSuccess' error='logoUploadFailure' pre-post='ensureMissionHasGuid' accept='image/*' type-restriction='image/(gif|jpeg|jpg|png)' mission='mission'></div>
+                            <div mission-logo-upload max-size='{{LogoParams.MAX_SIZE_BYTES}}' success='logoUploadSuccess' error='logoUploadFailure' 
+                                pre-post='ensureMissionHasGuid' accept='image/*' type-restriction='image/(gif|jpeg|jpg|png)' mission='mission'></div>
                         </div>
                     </div>`;
                 break;
@@ -467,13 +561,13 @@ function init() {
                     if (showCategory) {
                         editScope.selectedCategoryID = null;
                         editTarget = $(".body-panel > .panel-container");
-                        editCode = "<div class='category-dropdown'>"
-                            + "<select class='form-control' ng-model='selectedCategoryID'>"
-                            + "<option value='null'>OPTIONAL: Select a category to add this mission to</option>";
-                        for (var i = 0; i < editScope.categoryContent.length; i++) {
-                            editCode += "<option value='" + i + "'>" + editScope.categoryContent[i].name + "</option>";
-                        }
-                        editCode += "</select></div>";
+                        editCode = `
+                <div class="category-dropdown">
+                    <select class="form-control" ng-model="selectedCategoryID">
+                        <option value="null">${LOCAL_TXT.CREATE_PAGE.MF_DEFAULT_OPTIONAL}</option>
+                        ${editScope.categoryContent.map((content, i) => `<option value="${i}">${content.name}</option>`).join('')}
+                    </select>
+                </div>`;
                     }
                 }
                 break;
@@ -489,9 +583,38 @@ function init() {
             editScope.save(b);
             setTimeout(() => {
                 pageChange();
+                translateText();
             }, 500);
         }
 
+        setTimeout(function () {
+            let otherText = {
+                "MC_TITLE": "body > div.container.ng-scope > div > div.type-view.ng-scope > h3",
+                "MC_FOOTER_NEXT": "body > div.container.ng-scope > div > div.type-view.ng-scope > div.footer-buttons > button",
+                "MI_FOOTER_BACK": "body > div.container.ng-scope > div > div.name-view.ng-scope > div.footer-buttons > button:nth-child(1)",
+                "MI_FOOTER_NEXT": "body > div.container.ng-scope > div > div.name-view.ng-scope > div.footer-buttons > button:nth-child(2)",
+                "MI_ICON_LABEL": "body > div.container.ng-scope > div > div.name-view.ng-scope > div.bordered-panel.ready > div > div.col-sm-4 > div > div:nth-child(1) > div > div.upload-label",
+                "MI_ICON_UPLOAD_BTN": "body > div.container.ng-scope > div > div.name-view.ng-scope > div.bordered-panel.ready > div > div.col-sm-4 > div > div:nth-child(1) > div > div.upload-logo-cell > label",
+                "MI_ICON_CLEAR_BTN": "body > div.container.ng-scope > div > div.name-view.ng-scope > div.bordered-panel.ready > div > div.col-sm-4 > div > div:nth-child(1) > div > div.clear-logo-button > button",
+                "MI_ICON_PREVIEW": "body > div.container.ng-scope > div > div.name-view.ng-scope > div.bordered-panel.ready > div > div.col-sm-4 > div > div:nth-child(3)",
+                "MI_ICON_LOGO": "body > div.container.ng-scope > div > div.name-view.ng-scope > div.bordered-panel.ready > div > div.col-sm-4 > div > div:nth-child(4) > div.uploaded-images-headers > div:nth-child(1)",
+                "MI_ICON_MEDAL": "body > div.container.ng-scope > div > div.name-view.ng-scope > div.bordered-panel.ready > div > div.col-sm-4 > div > div:nth-child(4) > div.uploaded-images-headers > div:nth-child(2)",
+                "MI_TITLE": "body > div.container.ng-scope > div > div.name-view.ng-scope > h3",
+                "MW_FOOTER_MISSIONS": "body > div.container.ng-scope > div > div.waypoints-view.ng-scope > div.footer > div.pull-left > button",
+                "MW_FOOTER_BACK": "body > div.container.ng-scope > div > div.waypoints-view.ng-scope > div.footer > div.pull-right > button:nth-child(1)",
+                "MW_FOOTER_NEXT": "body > div.container.ng-scope > div > div.waypoints-view.ng-scope > div.footer > div.pull-right > button:nth-child(2)",
+                "": "",
+                "": "",
+                "": "",
+                "": "",
+            }
+            for (let key in otherText) {
+                let element = document.querySelector(otherText[key]);
+                if (element) {
+                    element.innerText = LOCAL_TXT.CREATE_PAGE[key] || element.innerText;
+                }
+            }
+        }, 500)
     }
 
     function missionListSetup(missionScope) {
