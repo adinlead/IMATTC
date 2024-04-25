@@ -1,18 +1,18 @@
 // ==UserScript==
 // @name         IMATTC
-// @version      1.8.1
+// @version      1.8.3
 // @description  A usability overhaul for the Ingress Mission Authoring Tool
 // @author       @Chyld314
-// @match        https://mission-author-dot-betaspike.appspot.com/
-// @match        https://mission-author-dot-betaspike.appspot.com/edit*
+// @editor       @adinlead
 // @match        http://missions.ingress.com/
 // @match        http://missions.ingress.com/edit*
 // @match        https://missions.ingress.com/
 // @match        https://missions.ingress.com/edit*
-// @require      https://code.jquery.com/ui/1.10.4/jquery-ui.min.js
+// @require      https://code.jquery.com/jquery-3.6.0.min.js
+// @require      https://code.jquery.com/ui/1.13.2/jquery-ui.min.js
 // @grant        none
-// @downloadURL	 https://github.com/andyjennings314/IMATTC/raw/master/IMATTC.user.js
-// @updateURL	 https://github.com/andyjennings314/IMATTC/raw/master/IMATTC.user.js
+// @downloadURL	 https://github.com/adinlead/IMATTC/raw/master/IMATTC.user.js
+// @updateURL	 https://github.com/adinlead/IMATTC/raw/master/IMATTC.user.js
 // ==/UserScript==
 var requiredVersion = "";  // 所需的jQuery版本
 var currentVersion = $.fn.jquery;  // 当前加载的jQuery版本
@@ -21,6 +21,7 @@ if (!$ || $.fn.jquery < "3.0.0") {
     var insertJq = document.createElement('script');
     insertJq.setAttribute("type", "text/javascript");
     insertJq.setAttribute("src", "https://code.jquery.com/jquery-3.6.0.min.js");
+    insertJq.setAttribute("src", "https://code.jquery.com/ui/1.13.2/jquery-ui.min.js");
     document.getElementsByTagName("head")[0].appendChild(insertJq);
     console.log("!NO $")
 }
@@ -872,6 +873,7 @@ function init() {
         }
 
         missionScope.sortCategory = function (category) {
+            console.log("sortCategory >>>>> ", category)
             if (category == 'all') {
                 missionScope.missions = w.$filter("orderBy")(missionScope.missions, missionScope.sortCriteria[0] == 'initial' ? 'position' : missionScope.sortCriteria[0]);
             } else if (category == 'unsorted') {
@@ -1165,6 +1167,12 @@ function init() {
                 }, 250);
                 //now enable drag-drop for the missions!
                 if (missionScope.categoryContent.length > 0) {
+                    $('.row[id^=category]').each(function (idx, elem) {
+                        console.log("=============================")
+                        console.log("idx >>> ", idx)
+                        console.log("elem >>> ", elem)
+                        console.log("elem.id >>> ", elem.id)
+                    });
                     $('.row[id^=category]').sortable({
                         items: "div.missionbox",
                         connectWith: ".row[id^=category]",
