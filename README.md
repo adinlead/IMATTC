@@ -18,7 +18,7 @@
 脚本将创建新分类，并自动将您的其他任务放入“未分类”任务中。下一步是将任务添加到您的分类中，在脚本的最新版本中，这一操作变得非常简单——只需点击并拖动您想要的任务到相应的分类中！您甚至可以通过点击和拖动来重新排序它们在分类中的默认顺序。
 ![alt text](https://github.com/andyjennings314/IMATTC/raw/master/img/screen5.PNG "Screenshot 5")
 
-最后，每个分类的顶部都有一个按钮，用于预览其内容的横幅效果：
+最后，每个分类的顶部都有一组按钮，用于预览其内容的横幅效果或组内任务路径：
 ![alt text](https://github.com/andyjennings314/IMATTC/raw/master/img/screen6.PNG "Screenshot 6")
 
 ## 功能特性
