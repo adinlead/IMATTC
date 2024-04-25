@@ -71,6 +71,11 @@ const _DEFAULT_LOCAL_TXT = {
         "ALPHABETICAL_DESC": "Alphabetical (descending)",
         "CREATION_ORDER": "Creation order",
         "MISSION_STATE": "Mission state",
+    },
+    "CATEGORY_OPT":{
+        "PREVIEW_IMAGES":"Preview Images",
+        "PREVIEW_ROUTE":"Preview Route",
+        "DELETE_CATEGORY":"Delete Category",
     }
 };
 const _LOCAL_TXT_DICT = {
@@ -99,6 +104,11 @@ const _LOCAL_TXT_DICT = {
             "ALPHABETICAL_DESC": "任务名倒序",
             "CREATION_ORDER": "创建顺序",
             "MISSION_STATE": "任务状态",
+        },
+        "CATEGORY_OPT":{
+            "PREVIEW_IMAGES":"组图预览",
+            "PREVIEW_ROUTE":"路径预览",
+            "DELETE_CATEGORY":"删除分组",
         }
     }
 }
@@ -388,15 +398,26 @@ function init() {
                 editTarget = $(".name-view .bordered-panel");
                 //Overhauled UI on Mission Name/Image pages
                 $(".name-view .bordered-panel").empty().addClass('ready');
-                editCode = "<div class='row'><div class='col-sm-8 form-horizontal'><div class='form-group'>"
-                    + "<label for='missionName' class='col-sm-2 control-label'>Mission Name</label>"
-                    + "<div class='col-sm-10'><input type='text' id='missionName' ng-model='mission.definition.name' class='form-control' placeholder='Add mission name' ng-class='{\"invalid\": !mission.definition.name}' maxlength='" + editScope.MissionRules.MAX_MISSION_NAME_LENGTH + "'>"
-                    + "</div></div><div class='form-group'>"
-                    + "<label for='missionDesc' class='col-sm-2 control-label'>Mission Description</label>"
-                    + "<div class='col-sm-10'><textarea id='missionDesc' class='form-control' rows='4' ng-model='mission.definition.description' placeholder='Add mission description' ng-class='{\"invalid\": !mission.definition.description}' maxlength='" + editScope.MissionRules.MAX_MISSION_DESCRIPTION_LENGTH + "'></textarea>"
-                    + "</div></div></div><div class='col-sm-4'"
-                    + "<div mission-logo-upload max-size='{{LogoParams.MAX_SIZE_BYTES}}' success='logoUploadSuccess' error='logoUploadFailure' pre-post='ensureMissionHasGuid' accept='image/*' type-restriction='image/(gif|jpeg|jpg|png)' mission='mission'></div>"
-                    + "</div></div>";
+                editCode = `
+                    <div class='row'>
+                        <div class='col-sm-8 form-horizontal'>
+                            <div class='form-group'>
+                                <label for='missionName' class='col-sm-2 control-label'>Mission Name</label>
+                                <div class='col-sm-10'>
+                                    <input type='text' id='missionName' ng-model='mission.definition.name' class='form-control' placeholder='Add mission name' ng-class="{'invalid': !mission.definition.name}" maxlength='${editScope.MissionRules.MAX_MISSION_NAME_LENGTH}'>
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <label for='missionDesc' class='col-sm-2 control-label'>Mission Description</label>
+                                <div class='col-sm-10'>
+                                    <textarea id='missionDesc' class='form-control' rows='4' ng-model='mission.definition.description' placeholder='Add mission description' ng-class="{'invalid': !mission.definition.description}" maxlength='${editScope.MissionRules.MAX_MISSION_DESCRIPTION_LENGTH}'></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-4'>
+                            <div mission-logo-upload max-size='{{LogoParams.MAX_SIZE_BYTES}}' success='logoUploadSuccess' error='logoUploadFailure' pre-post='ensureMissionHasGuid' accept='image/*' type-restriction='image/(gif|jpeg|jpg|png)' mission='mission'></div>
+                        </div>
+                    </div>`;
                 break;
             case editScope.EditorScreenViews.WAYPOINTS:
                 //Adding drag-and-drop mission reordering
@@ -912,20 +933,42 @@ function init() {
                     //once all the categorisation is done, create the HTML for the categories!
                     missionContent += "<div class='panel-group' id='accordion' role='tablist' aria-multiselectable='true' style='width: 100%'>";
                     for (var i = 0; i < missionScope.categoryContent.length; i++) {
-                        missionContent += "<div class='panel panel-default'><div class='panel-heading' role='tab'>"
-                            + "<h4 class='panel-title' ng-class='{\"collapsed\" : categoryContent[" + i + "].collapse}'><a ng-click='toggleCollapse(categoryContent[" + i + "], false)' role='button' data-toggle='collapse'>"
-                            + missionScope.categoryContent[i].name
-                            + "</a></h4></div><div class='panel-collapse collapse' ng-class='{\"in\" : !categoryContent[" + i + "].collapse}' role='tabpanel'><div class='panel-body'>"
-                            + "<div id='category" + i + "' class='row'><div class='col-xs-12 categoryFunctions'>"
-                            + generateSort(i)
-                            + "<button class='btn btn-default'style='float: right!important;margin: 5px 0;' ng-click='deleteCategory(" + i + ")'>Delete Category</button>";
+                        missionContent +=
+                            `<div class='panel panel-default'>
+                                <div class='panel-heading' role='tab'>
+                                    <h4 class='panel-title' ng-class="{'collapsed ': categoryContent[${i}].collapse}">
+                                        <a ng-click='toggleCollapse(categoryContent[${i}], false)' role='button' data-toggle='collapse'>
+                                            ${missionScope.categoryContent[i].name}
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div class='panel-collapse collapse' ng-class="{'in' : !categoryContent[${i}].collapse}" role='tabpanel'>
+                                    <div class='panel-body'>
+                                        <div id='category${i}' class='row'>
+                                            <div class='col-xs-12 categoryFunctions'>
+                                                ${generateSort(i)}
+                                                <button class='btn btn-default' style='float: right!important;margin: 5px 0;' ng-click='deleteCategory(${i})'>
+                                                    ${LOCAL_TXT.CATEGORY_OPT.DELETE_CATEGORY}
+                                                </button>`;
                         if (!missionScope.categoryContent[i].missions || missionScope.categoryContent[i].missions.length == 0) {
                             //no missions so far!
                             missionContent += "</div><div class='col-xs-12'>No missions added to the category yet</div>";
                         } else {
-                            missionContent += "<button class='btn btn-default'style='float: right!important;margin: 5px;' data-toggle='modal' data-target='#previewBanner" + i + "'>Preview Images</button>"
-                                + "<button class='btn btn-default'style='float: right!important;margin: 5px;' ng-click='previewBanner(" + i + ")' data-toggle='modal' data-target='#previewMissionModel'>Preview Route</button></div>";
-                            var bannerModal = "<div class='modal fade' id='previewBanner" + i + "' tabindex='-1' role='dialog'><div class='modal-dialog modal-lg' role='document'><div class='modal-content banner-preview'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button><h4 class='modal-title'>Preview \"" + missionScope.categoryContent[i].name + "\"</h4></div><div class='modal-body'><div class='row'>";
+                            missionContent += `
+                                <button class='btn btn-default' style='float: right!important;margin: 5px;' data-toggle='modal' data-target='#previewBanner${i}'>${LOCAL_TXT.CATEGORY_OPT.PREVIEW_IMAGES}</button>
+                                <button class='btn btn-default' style='float: right!important;margin: 5px;' ng-click='previewBanner(${i})' data-toggle='modal' data-target='#previewMissionModel'>${LOCAL_TXT.CATEGORY_OPT.PREVIEW_ROUTE}</button></div>`;
+                            var bannerModal = `
+                                    <div class='modal fade' id='previewBanner${i}' tabindex='-1' role='dialog'>
+                                        <div class='modal-dialog modal-lg' role='document'>
+                                            <div class='modal-content banner-preview'>
+                                                <div class='modal-header'>
+                                                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                                        <span aria-hidden='true'>&times;</span>
+                                                    </button>
+                                                    <h4 class='modal-title'>Preview ${missionScope.categoryContent[i].name}</h4>
+                                                </div>
+                                            <div class='modal-body'>
+                                                <div class='row'>`;
                             for (var j = 0; j < missionScope.categoryContent[i].missions.length; j++) {
                                 var mission = missionScope.categorisedMissions[i][j];
                                 if (mission == undefined) {
@@ -943,13 +986,30 @@ function init() {
                         missionContent += "</div></div></div></div>";
                     }
                     //add unsorted missions if there are any
-                    missionContent += `<div class='panel panel-default'><div class='panel-heading' role='tab' id='header-unsorted'>\
-                        <h4 class='panel-title' ng-class='{"collapsed" : unsortedCollapse.collapse}'><a ng-click='toggleCollapse(unsortedCollapse, true)' role='button' data-toggle='collapse'>${LOCAL_TXT.UNSORTED_MISSIONS}</a></h4></div><div class='panel-collapse collapse' ng-class='{"in" : !unsortedCollapse.collapse}' role='tabpanel'><div class='panel-body'>
-                        <div id='categoryunsorted' class='row'><div class='col-xs-12 categoryFunctions'>${generateSort('unsorted')}</div>`;
-                    for (var i = 0; i < missionScope.uncategorisedMissions.length; i++) {
-                        missionContent += generateMission(missionScope.uncategorisedMissions[i], missionScope.uncategorisedMissions[i].position, false);
-                    }
-                    missionContent += "</div></div></div></div></div>";
+                    missionContent +=
+                        `<div class='panel panel-default'>
+                            <div class='panel-heading' role='tab' id='header-unsorted'>
+                                <h4 class='panel-title' ng-class="{'collapsed' : unsortedCollapse.collapse}">
+                                    <a ng-click='toggleCollapse(unsortedCollapse, true)' role='button' data-toggle='collapse'>${LOCAL_TXT.UNSORTED_MISSIONS}</a>
+                                </h4>
+                            </div>
+                            <div class='panel-collapse collapse' ng-class="{'in' : !unsortedCollapse.collapse}" role='tabpanel'>
+                                <div class='panel-body'>
+                                    <div id='categoryunsorted' class='row'>
+                                        <div class='col-xs-12 categoryFunctions'>
+                                            ${generateSort('unsorted')}
+                                        </div>
+                                        ${missionScope.uncategorisedMissions.map((mission, index) => generateMission(mission, index, false)).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        `;
+                    // for (var i = 0; i < missionScope.uncategorisedMissions.length; i++) {
+                    //     missionContent += generateMission(missionScope.uncategorisedMissions[i], missionScope.uncategorisedMissions[i].position, false);
+                    // }
+                    // missionContent += "</div></div></div></div></div>";
                 } else {
                     //if no user-defined categories, just loop through the missions
                     missionContent += "<div class='col-xs-12'>"
@@ -980,10 +1040,6 @@ function init() {
                 setTimeout(() => {
                     w.scrollTo(0, scrollPosition);
                 }, 250);
-
-                console.log(">>>>>>>>> ",$.fn.jquery)
-                console.log(">>>>>>>>> ",$.fn)
-                console.log(">>>>>>>>> ",$('.row[id^=category]'))
                 //now enable drag-drop for the missions!
                 if (missionScope.categoryContent.length > 0) {
                     $('.row[id^=category]').sortable({
